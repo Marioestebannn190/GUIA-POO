@@ -1,0 +1,41 @@
+from abc import ABC, abstractmethod
+
+# Clase base abstracta
+class MetodoDePago(ABC):
+    @abstractmethod
+    def procesar_pago(self, cantidad):
+        pass
+
+# Clase derivada para Tarjeta de Crédito
+class TarjetaDeCredito(MetodoDePago):
+    def procesar_pago(self, cantidad):
+        # Lógica específica para procesar pago con tarjeta de crédito
+        return f"Procesando pago de {cantidad} con tarjeta de crédito."
+
+# Clase derivada para PayPal
+class PayPal(MetodoDePago):
+    def procesar_pago(self, cantidad):
+        # Lógica específica para procesar pago con PayPal
+        return f"Procesando pago de {cantidad} con PayPal."
+
+# Clase derivada para Criptomonedas
+class Criptomoneda(MetodoDePago):
+    def procesar_pago(self, cantidad):
+        # Lógica específica para procesar pago con criptomonedas
+        return f"Procesando pago de {cantidad} con criptomonedas."
+
+# Función que demuestra el polimorfismo
+def procesar_pagos(metodos_de_pago, cantidad):
+    for metodo in metodos_de_pago:
+        print(metodo.procesar_pago(cantidad))
+
+# Creación de instancias de métodos de pago
+tarjeta = TarjetaDeCredito()
+paypal = PayPal()
+cripto = Criptomoneda()
+
+# Lista de métodos de pago
+metodos_de_pago = [tarjeta, paypal, cripto]
+
+# Uso de polimorfismo
+procesar_pagos(metodos_de_pago, 100.0)
