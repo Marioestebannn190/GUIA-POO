@@ -1,0 +1,49 @@
+# Clase base
+class Animal:
+    def __init__(self, nombre, edad, especie):
+        self.nombre = nombre
+        self.edad = edad
+        self.especie = especie
+
+    def hacer_sonido(self):
+        raise NotImplementedError("Este método debe ser implementado por subclases")
+
+    def __str__(self):
+        return f"{self.especie} llamado {self.nombre} de {self.edad} años"
+
+# Clase derivada para Perro
+class Perro(Animal):
+    def __init__(self, nombre, edad, entrenado):
+        super().__init__(nombre, edad, "Perro")
+        self.entrenado = entrenado
+
+    def hacer_sonido(self):
+        return "Guau"
+
+    def __str__(self):
+        entrenado_str = "entrenado" if self.entrenado else "no entrenado"
+        return super().__str__() + f", {entrenado_str}"
+
+# Clase derivada para Gato
+class Gato(Animal):
+    def __init__(self, nombre, edad, es_de_interior):
+        super().__init__(nombre, edad, "Gato")
+        self.es_de_interior = es_de_interior
+
+    def hacer_sonido(self):
+        return "Miau"
+
+    def __str__(self):
+        interior_str = "de interior" if self.es_de_interior else "de exterior"
+        return super().__str__() + f", {interior_str}"
+
+# Creación de instancias
+perro1 = Perro("Rex", 5, True)
+gato1 = Gato("Misi", 3, False)
+
+# Uso de los objetos
+print(perro1)  # Salida: Perro llamado Rex de 5 años, entrenado
+print(perro1.hacer_sonido())  # Salida: Guau
+
+print(gato1)  # Salida: Gato llamado Misi de 3 años, de exterior
+print(gato1.hacer_sonido())  # Salida: Miau
