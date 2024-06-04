@@ -1,0 +1,35 @@
+class CuentaBancaria:
+    def __init__(self, numero_cuenta, nombre_titular, saldo=0.0):
+        self.numero_cuenta = numero_cuenta
+        self.nombre_titular = nombre_titular
+        self.saldo = saldo
+
+    def depositar(self, cantidad):
+        if cantidad > 0:
+            self.saldo += cantidad
+            print(f"Se han depositado {cantidad} en la cuenta {self.numero_cuenta}. Nuevo saldo: {self.saldo}.")
+        else:
+            print("La cantidad a depositar debe ser positiva.")
+
+    def retirar(self, cantidad):
+        if 0 < cantidad <= self.saldo:
+            self.saldo -= cantidad
+            print(f"Se han retirado {cantidad} de la cuenta {self.numero_cuenta}. Nuevo saldo: {self.saldo}.")
+        else:
+            print("Fondos insuficientes o cantidad inválida.")
+
+    def consultar_saldo(self):
+        print(f"El saldo de la cuenta {self.numero_cuenta} es {self.saldo}.")
+
+# Creación de objetos de la clase CuentaBancaria
+cuenta_1 = CuentaBancaria("123456789", "Juan Perez", 1000.0)
+cuenta_2 = CuentaBancaria("987654321", "Maria Gomez", 500.0)
+
+# Interacción con los objetos
+cuenta_1.consultar_saldo()  # Salida: El saldo de la cuenta 123456789 es 1000.0.
+cuenta_1.depositar(200)     # Salida: Se han depositado 200 en la cuenta 123456789. Nuevo saldo: 1200.0.
+cuenta_1.retirar(150)       # Salida: Se han retirado 150 de la cuenta 123456789. Nuevo saldo: 1050.0.
+
+cuenta_2.consultar_saldo()  # Salida: El saldo de la cuenta 987654321 es 500.0.
+cuenta_2.depositar(300)     # Salida: Se han depositado 300 en la cuenta 987654321. Nuevo saldo: 800.0.
+cuenta_2.retirar(1000)      # Salida: Fondos insuficientes o cantidad inválida.
